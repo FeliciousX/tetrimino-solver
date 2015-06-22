@@ -27,13 +27,13 @@ struct Board {
 }
 
 impl Board {
-    fn new(width: i32, height: i32) -> Vec<Vec<Board>> {
+    fn new(row: i32, col: i32) -> Vec<Vec<Board>> {
 
         let mut board: Vec<Vec<Board>> = Vec::new();
-        for w in 0..width {
+        for w in 0..row {
 
             let mut innerBoard: Vec<Board> = Vec::new();
-            for h in 0..height {
+            for h in 0..col {
                 innerBoard.push(Board { filled: false });
             }
 
@@ -42,14 +42,28 @@ impl Board {
 
         return board;
     }
+
 }
 
 fn main() {
-    println!("Hello, world!");
-    let width = 7;
-    let height = 4;
+    // TODO: make it a dynamic board
+    let R = 4;
+    let C = 7;
 
-    let mut board = Board::new(width, height);
+    let mut board = Board::new(R, C);
+
+    // TODO: put in a printing function
+    for row in board {
+        for col in row {
+            match col.filled {
+                true => print!("[X]"),
+                false => print!("[ ]")
+            }
+        }
+        println!("");
+    }
+
+    // Test data
     let mut blocks: Vec<Block> = vec![
         Block::new(Tetromino::I),
         Block::new(Tetromino::I),
@@ -62,14 +76,15 @@ fn main() {
 
     let x = &blocks[6];
 
-    match x.shape {
-        Tetromino::I => println!("I shape"),
-        Tetromino::O => println!("O shape"),
-        Tetromino::T => println!("T shape"),
-        Tetromino::J => println!("J shape"),
-        Tetromino::L => println!("L shape"),
-        Tetromino::S => println!("S shape"),
-        Tetromino::Z => println!("Z shape"),
+    // test matching
+    match x {
+        &Block { shape: Tetromino::I, .. } => println!("I shape"),
+        &Block { shape: Tetromino::O, .. } => println!("O shape"),
+        &Block { shape: Tetromino::T, .. } => println!("T shape"),
+        &Block { shape: Tetromino::J, .. } => println!("J shape"),
+        &Block { shape: Tetromino::L, .. } => println!("L shape"),
+        &Block { shape: Tetromino::S, .. } => println!("S shape"),
+        &Block { shape: Tetromino::Z, .. } => println!("Z shape"),
     }
 }
 
