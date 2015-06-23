@@ -1,49 +1,9 @@
-enum Tetromino {
-    I,
-    O,
-    T,
-    J,
-    L,
-    S,
-    Z,
-}
+mod block;
+mod board;
 
-struct Block {
-    shape: Tetromino,
-    anchor: (i32, i32),
-}
-
-impl Block {
-    fn new(tetris: Tetromino) -> Block {
-        Block {
-            shape: tetris,
-            anchor: (-1, -1),
-        }
-    }
-}
-
-struct Board {
-    filled: bool,
-}
-
-impl Board {
-    fn new(row: i32, col: i32) -> Vec<Vec<Board>> {
-
-        let mut board: Vec<Vec<Board>> = Vec::new();
-        for w in 0..row {
-
-            let mut innerBoard: Vec<Board> = Vec::new();
-            for h in 0..col {
-                innerBoard.push(Board { filled: false });
-            }
-
-            board.push(innerBoard);
-        }
-
-        return board;
-    }
-
-}
+use block::Block;
+use block::Tetromino;
+use board::Board;
 
 fn main() {
     // TODO: make it a dynamic board
