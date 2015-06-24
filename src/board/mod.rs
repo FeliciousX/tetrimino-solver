@@ -1,23 +1,39 @@
+use super::block;
+
 pub struct Board {
-    pub filled: bool,
+    pub squares: Vec<Vec<Square>>,
+    pub row: i32,
+    pub col: i32,
+    pub complete: bool
+}
+
+pub struct Square {
+   pub filled: bool,
 }
 
 impl Board {
-    pub fn new(row: i32, col: i32) -> Vec<Vec<Board>> {
-
-        let mut board: Vec<Vec<Board>> = Vec::new();
+    pub fn new(row: i32, col: i32) -> Board {
+        let mut squares: Vec<Vec<Square>> = Vec::new();
         for w in 0..row {
 
-            let mut innerBoard: Vec<Board> = Vec::new();
+            let mut innerSquare: Vec<Square> = Vec::new();
             for h in 0..col {
-                innerBoard.push(Board { filled: false });
+                innerSquare.push(Square { filled: false });
             }
 
-            board.push(innerBoard);
+            squares.push(innerSquare);
         }
 
-        return board;
+        Board {
+            squares: squares,
+            row: row,
+            col: col,
+            complete: false,
+        }
     }
 
+    pub fn fill(block: block::Block, coordinate: (i32, i32)) {
+        // TODO: add block to the coordinate using the anchor coordinate as guide
+    }
 }
 

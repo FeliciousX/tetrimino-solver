@@ -13,7 +13,7 @@ fn main() {
     let mut board = Board::new(R, C);
 
     // TODO: put in a printing function
-    for row in board {
+    for row in board.squares {
         for col in row {
             match col.filled {
                 true => print!("[X]"),
