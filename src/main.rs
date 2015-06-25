@@ -1,5 +1,6 @@
 mod block;
 mod board;
+mod coordinate;
 
 use block::Block;
 use block::Tetromino;
@@ -7,31 +8,24 @@ use board::Board;
 
 fn main() {
     // TODO: make it a dynamic board
-    let R = 4;
-    let C = 7;
+    let r = 4;
+    let c = 7;
 
-    let mut board = Board::new(R, C);
+    let mut board = Board::new(r, c);
 
-    // TODO: put in a printing function
-    for row in board.squares {
-        for col in row {
-            match col.filled {
-                true => print!("[X]"),
-                false => print!("[ ]")
-            }
-        }
-        println!("");
-    }
+    let coordinate = coordinate::Coordinate::new(3, 4);
 
     // Test data
-    let mut blocks: Vec<Block> = vec![
+    let blocks: Vec<Block> = vec![
         Block::new(Tetromino::I),
         Block::new(Tetromino::I),
         Block::new(Tetromino::T),
         Block::new(Tetromino::T),
         Block::new(Tetromino::S),
         Block::new(Tetromino::Z),
-        Block::new(Tetromino::L)
+        Block::new(Tetromino::L),
+        Block::new(Tetromino::O),
+        Block::new(Tetromino::J)
     ];
 
     let x = &blocks[6];
@@ -46,5 +40,17 @@ fn main() {
         &Block { shape: Tetromino::S, .. } => println!("S shape"),
         &Block { shape: Tetromino::Z, .. } => println!("Z shape"),
     }
+
+    // TODO: put in a printing function
+    for row in board.squares {
+        for col in row {
+            match col.filled {
+                true => print!("[X]"),
+                false => print!("[ ]")
+            }
+        }
+        println!("");
+    }
+
 }
 
