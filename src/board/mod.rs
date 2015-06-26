@@ -3,7 +3,6 @@ mod square;
 use self::square::Square;
 use super::block;
 
-
 pub struct Board {
     pub squares: Vec<Vec<Square>>,
     height: i32,
@@ -107,13 +106,30 @@ impl Board {
     ///
     /// The `Block` will be placed according to the `Block.anchor`
     ///
+    /// # Examples
+    /// ```
+    /// use board::Board;
+    /// use block::Block;
+    ///
+    /// let mut board = Board::new(10, 10);
+    ///
+    /// let mut block =  Block::new(Tetromino::I);
+    /// let coordinate = Coordinate::new(5, 5);
+    ///
+    /// block.set_anchor(coordinate);
+    /// board.fill(block);
+    ///
+    /// assert_eq!(true, board.squares[5][5].filled);
+    /// ```
     pub fn fill(&mut self, block: &block::Block) {
         // TODO: add block to the coordinate using the anchor coordinate as guide
         println!("filling");
-        let r = block.get_row();
-        let c = block.get_col();
+        let anchor = block.get_anchor();
 
-        self.squares[r][c].filled = true;
+        let r = anchor.get_row();
+        let c = anchor.get_col();
+        
+        self.squares[r as usize][c as usize].filled = true;
     }
 }
 
