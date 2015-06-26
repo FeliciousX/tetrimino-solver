@@ -1,4 +1,10 @@
-mod square;
+pub mod square {
+    //! The Square struct represents a square on the board
+    pub struct Square {
+        /// `filled` is true if a block is sitting on top of it
+        pub filled: bool,
+    }
+}
 
 use self::square::Square;
 use super::block;

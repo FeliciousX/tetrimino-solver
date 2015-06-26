@@ -1,6 +1,6 @@
-mod block;
-mod board;
-mod coordinate;
+pub mod block;
+pub mod board;
+pub mod coordinate;
 
 use block::Block;
 use block::Tetromino;
