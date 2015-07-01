@@ -11,6 +11,7 @@ pub enum Tetromino {
     Z,
 }
 
+/// Block represents the tetris blocks that will be placed in the `Board`
 pub struct Block {
     pub shape: Tetromino,
     pub anchor: Coordinate,

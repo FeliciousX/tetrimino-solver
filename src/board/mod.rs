@@ -9,10 +9,15 @@ pub mod square {
 use self::square::Square;
 use super::block;
 
+/// Board represents the space the tetris has to add into
 pub struct Board {
+    /// 2D array of squares
     pub squares: Vec<Vec<Square>>,
+    /// maximum row of board
     height: i32,
+    /// maximum column of board
     width: i32,
+    /// if the board is completely filled without gaps
     complete: bool
 }
 
