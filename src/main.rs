@@ -5,13 +5,11 @@ pub mod coordinate;
 use block::Block;
 use block::Tetromino;
 use board::Board;
+use std::io;
 
 fn main() {
-    // TODO: make it a dynamic board
-    let r = 4;
-    let c = 7;
 
-    let mut board = Board::new(r, c);
+    let board = init_board();
 
     let coordinate = coordinate::Coordinate::new(3, 4);
 
@@ -52,5 +50,32 @@ fn main() {
         println!("");
     }
 
+}
+
+fn init_board() -> Board {
+    let mut row = String::new();
+    let mut column = String::new();
+
+    println!("Enter number of rows:");
+    
+    io::stdin().read_line(&mut row)
+        .ok()
+        .expect("Failed to read line!");
+
+    let row: i32 = row.trim().parse()
+        .ok()
+        .expect("Please type a number!");
+
+    println!("Enter number of columns:");
+
+    io::stdin().read_line(&mut column)
+        .ok()
+        .expect("Failed to read line!");
+
+    let column: i32 = column.trim().parse()
+        .ok()
+        .expect("Please type a number!");
+
+    return Board::new(row, column);
 }
 
